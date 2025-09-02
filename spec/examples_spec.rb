@@ -19,12 +19,13 @@ RSpec.describe RecipeTimer do
     end
 
     it "can start the timer multiple times after reset" do
-      timer.start
-      timer.tick(10)
-      timer.stop
-      timer.reset
-      timer.start
-      expect(timer.running).to be true
+      10.times
+        timer.start
+        timer.tick(10)
+        timer.stop
+        timer.reset
+        timer.start
+        expect(timer.running).to be true
     end
 
     it "stops the timer" do
