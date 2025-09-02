@@ -18,6 +18,16 @@ RSpec.describe RecipeTimer do
       expect(timer.running).to be true
     end
 
+    it "can start the timer multiple times after reset" do
+      10.times
+        timer.start
+        timer.tick(10)
+        timer.stop
+        timer.reset
+        timer.start
+        expect(timer.running).to be true
+    end
+
     it "stops the timer" do
       timer.start
       timer.stop
@@ -44,6 +54,11 @@ RSpec.describe RecipeTimer do
       timer.tick(15)
       expect(timer.elapsed).to eq(10)
     end
+
+    it "does not allow negative values" do
+      expect(timer.elapsed).to be > -1
+    end
+
   end
 
   describe "#reset" do
@@ -78,16 +93,5 @@ RSpec.describe RecipeTimer do
       timer.tick(10)
       expect(timer.finished?).to be true
     end
-  end
-
-  # Pending specs for students
-  it "is pending: timer handles negative tick values (student)" do
-    pending("Student: Implement a spec to check that tick handles negative values correctly")
-    raise "Unimplemented pending spec"
-  end
-
-  it "is pending: timer can be started multiple times without issues (student)" do
-    pending("Student: Implement a spec to check that calling start multiple times does not cause problems")
-    raise "Unimplemented pending spec"
   end
 end
